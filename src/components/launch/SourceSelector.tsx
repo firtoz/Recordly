@@ -220,7 +220,7 @@ export function SourceSelector() {
                           <img
                             src={source.appIcon}
                             alt="App icon"
-                            className={styles.icon + " flex-shrink-0"}
+                            className={styles.icon + " shrink-0"}
                           />
                         )}
                         <div className={styles.name + " truncate"}>{source.name}</div>

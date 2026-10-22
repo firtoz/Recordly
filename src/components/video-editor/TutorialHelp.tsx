@@ -56,7 +56,7 @@ export function FeedbackDialog() {
 					</DialogDescription>
 				</DialogHeader>
 				<div className="mt-4 space-y-4">
-					<div className="rounded-xl border border-white/10 bg-white/[0.03] p-4 space-y-3">
+					<div className="rounded-xl border border-white/10 bg-white/3 p-4 space-y-3">
 						<div className="flex items-center justify-between gap-3 rounded-lg border border-white/5 bg-white/5 px-3 py-3">
 							<div>
 								<p className="text-[11px] uppercase tracking-[0.18em] text-slate-500">
@@ -145,7 +145,7 @@ export function KeyboardShortcutsDialog() {
 					</DialogDescription>
 				</DialogHeader>
 				<div className="mt-4 space-y-4">
-					<div className="rounded-xl border border-white/10 bg-white/[0.03] p-4 space-y-2 text-xs">
+					<div className="rounded-xl border border-white/10 bg-white/3 p-4 space-y-2 text-xs">
 						{SHORTCUT_ACTIONS.map((action) => (
 							<div key={action} className="flex items-center justify-between gap-3 rounded-lg border border-white/5 bg-white/5 px-3 py-2.5">
 								<span className="text-slate-300">{SHORTCUT_LABELS[action]}</span>
@@ -230,7 +230,7 @@ export function TutorialHelp() {
 						<h3 className="text-sm font-medium text-slate-400 uppercase tracking-wider">
 							{t("tutorial.visualExample")}
 						</h3>
-						<div className="relative h-24 bg-[#000] rounded-lg border border-white/10 flex items-center px-4 overflow-hidden select-none">
+						<div className="relative h-24 bg-black rounded-lg border border-white/10 flex items-center px-4 overflow-hidden select-none">
 							{/* Background track (Kept parts) */}
 							<div className="absolute inset-x-4 h-2 bg-slate-600 rounded-full overflow-hidden">
 								{/* Solid line representing video */}
@@ -268,7 +268,7 @@ export function TutorialHelp() {
 							<ArrowRight className="w-4 h-4 text-slate-600 rotate-90" />
 						</div>
 						{/* Result */}
-						<div className="relative h-12 bg-[#000] rounded-lg border border-white/10 flex items-center justify-center gap-1 px-4 select-none">
+						<div className="relative h-12 bg-black rounded-lg border border-white/10 flex items-center justify-center gap-1 px-4 select-none">
 							<div
 								className="h-8 bg-slate-700 rounded flex items-center justify-center opacity-80"
 								style={{ width: "30%" }}

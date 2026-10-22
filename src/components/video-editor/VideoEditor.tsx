@@ -2310,7 +2310,7 @@ export default function VideoEditor() {
 	return (
 		<div className="flex flex-col h-screen bg-[#111113] text-slate-200 overflow-hidden selection:bg-[#2563EB]/30">
 			<div
-				className="relative h-11 flex-shrink-0 bg-[#151518]/88 backdrop-blur-md border-b border-white/10 flex items-center justify-center px-8 z-50"
+				className="relative h-11 shrink-0 bg-[#151518]/88 backdrop-blur-md border-b border-white/10 flex items-center justify-center px-8 z-50"
 				style={{ WebkitAppRegion: "drag" } as React.CSSProperties}
 			>
 				<div className="flex items-baseline gap-0">
@@ -2462,7 +2462,7 @@ export default function VideoEditor() {
 
 			<div className="relative flex min-h-0 flex-1 gap-3 p-4">
 				{/* Left Column - Video & Timeline */}
-				<div className="order-2 flex h-full min-w-0 flex-[7] flex-col gap-3">
+				<div className="order-2 flex h-full min-w-0 flex-7 flex-col gap-3">
 					<PanelGroup direction="vertical" className="gap-3">
 						{/* Top section: video preview and controls */}
 						<Panel defaultSize={67} minSize={40}>
@@ -2472,7 +2472,7 @@ export default function VideoEditor() {
 									className="flex w-full min-h-0 flex-1 items-stretch"
 									style={{ flex: "1 1 auto", margin: "6px 0 0" }}
 								>
-									<div className="flex w-11 flex-shrink-0 items-center justify-center pl-1">
+									<div className="flex w-11 shrink-0 items-center justify-center pl-1">
 										<LayoutGroup id="preview-icon-rail">
 											<div className="flex flex-col items-center gap-3">
 												{editorSectionButtons.map((section) => {
@@ -2484,7 +2484,7 @@ export default function VideoEditor() {
 															type="button"
 															onClick={() => setActiveEffectSection(section.id)}
 															title={section.label}
-															className="group relative flex h-8 w-8 items-center justify-center text-white/75 outline-none transition-colors hover:text-white focus:outline-none focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0"
+															className="group relative flex h-8 w-8 items-center justify-center text-white/75 outline-hidden transition-colors hover:text-white focus:outline-hidden focus-visible:outline-hidden focus-visible:ring-0 focus-visible:ring-offset-0"
 															animate={{ scale: isActive ? 1.06 : 1, opacity: isActive ? 1 : 0.82 }}
 															transition={{ type: "spring", stiffness: 420, damping: 28 }}
 														>
@@ -2728,10 +2728,10 @@ export default function VideoEditor() {
 			{showCropModal ? (
 				<>
 					<div
-						className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm animate-in fade-in duration-200"
+						className="fixed inset-0 z-50 bg-black/80 backdrop-blur-xs animate-in fade-in duration-200"
 						onClick={handleCancelCropEditor}
 					/>
-					<div className="fixed left-1/2 top-1/2 z-[60] max-h-[90vh] w-[90vw] max-w-5xl -translate-x-1/2 -translate-y-1/2 overflow-auto rounded-2xl border border-white/10 bg-[#09090b] p-8 shadow-2xl animate-in zoom-in-95 duration-200">
+					<div className="fixed left-1/2 top-1/2 z-60 max-h-[90vh] w-[90vw] max-w-5xl -translate-x-1/2 -translate-y-1/2 overflow-auto rounded-2xl border border-white/10 bg-[#09090b] p-8 shadow-2xl animate-in zoom-in-95 duration-200">
 						<div className="mb-6 flex items-center justify-between">
 							<div>
 								<span className="text-xl font-bold text-slate-200">{t("settings.crop.title")}</span>

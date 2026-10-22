@@ -39,7 +39,9 @@ jobs:
           cache: npm
 
       - name: Install dependencies
-        run: npm ci
+        run: |
+          npm install --global npm@11.21.1
+          npm ci
 
       - name: Install app dependencies
         run: npx electron-builder install-app-deps
@@ -75,7 +77,9 @@ jobs:
           cache: npm
 
       - name: Install dependencies
-        run: npm ci
+        run: |
+          npm install --global npm@11.21.1
+          npm ci
 
       - name: Install app dependencies
         run: npx electron-builder install-app-deps
@@ -99,7 +103,7 @@ jobs:
 
   build-windows-x64:
     name: Build Windows x64
-    runs-on: windows-latest
+    runs-on: windows-2022
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -111,7 +115,9 @@ jobs:
           cache: npm
 
       - name: Install dependencies
-        run: npm ci
+        run: |
+          npm install --global npm@11.21.1
+          npm ci
 
       - name: Install app dependencies
         run: npx electron-builder install-app-deps
@@ -146,7 +152,9 @@ jobs:
           cache: npm
 
       - name: Install dependencies
-        run: npm ci
+        run: |
+          npm install --global npm@11.21.1
+          npm ci
 
       - name: Install app dependencies
         run: npx electron-builder install-app-deps

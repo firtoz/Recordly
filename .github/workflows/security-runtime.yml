@@ -1,0 +1,60 @@
+name: Security runtime validation
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+  CSC_IDENTITY_AUTO_DISCOVERY: "false"
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version-file: .nvmrc
+          package-manager-cache: false
+      - run: npm install --global npm@11.21.1
+      - run: npm audit
+  native:
+    name: Native build (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      max-parallel: 1
+      matrix:
+        os: [ubuntu-latest, windows-2022, macos-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version-file: .nvmrc
+          package-manager-cache: false
+      - name: Install Linux native build dependencies
+        if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y libx11-dev libxtst-dev libxrandr-dev libxi-dev libxinerama-dev libxcursor-dev libxkbcommon-dev libxkbfile-dev
+      - run: npm install --global npm@11.21.1
+      - run: npm ci
+      - run: npm exec tsc -- --noEmit
+      - run: npm test -- --maxWorkers=1
+      - run: npm run i18n:check
+      - run: npm exec vite -- build
+      - name: Check native runtime
+        if: runner.os != 'Linux'
+        run: node scripts/runtime-smoke.mjs
+      - name: Check native runtime under Xvfb
+        if: runner.os == 'Linux'
+        run: xvfb-run -a node scripts/runtime-smoke.mjs
+      - name: Smoke real Electron interface with synthetic media
+        if: runner.os == 'Linux'
+        run: xvfb-run -a node scripts/electron-ui-smoke.mjs
+      - name: Package unsigned app without publishing
+        run: npx electron-builder --dir --publish never
