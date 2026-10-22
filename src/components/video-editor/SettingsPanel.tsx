@@ -394,7 +394,7 @@ export function SettingsPanel({
 			"group relative aspect-square w-full overflow-hidden rounded-[10px] border bg-[#101115] transition-colors duration-150",
 			isSelected
 				? "border-[#2563EB] bg-white/8"
-				: "border-white/10 bg-white/[0.045] hover:border-white/20 hover:bg-white/[0.07]",
+				: "border-white/10 bg-white/4.5 hover:border-white/20 hover:bg-white/[0.07]",
 		);
 
 	const renderWallpaperImageTile = (
@@ -416,7 +416,7 @@ export function SettingsPanel({
 			onClick={props?.onClick}
 			role="button"
 		>
-			<div className="absolute inset-[1px] overflow-hidden rounded-[8px] bg-[#0d0e11]">
+			<div className="absolute inset-px overflow-hidden rounded-[8px] bg-[#0d0e11]">
 				<img
 					src={imageUrl}
 					alt={
@@ -424,7 +424,7 @@ export function SettingsPanel({
 						props?.ariaLabel ??
 						tSettings("background.wallpaperPreview", "Wallpaper preview")
 					}
-					className="h-full w-full select-none object-cover [transform:translateZ(0)]"
+					className="h-full w-full select-none object-cover transform-[translateZ(0)]"
 					draggable={false}
 				/>
 			</div>
@@ -627,7 +627,7 @@ export function SettingsPanel({
 
 			<div className="w-full">
 				<LayoutGroup id="background-picker-switcher">
-					<div className="grid h-8 w-full grid-cols-3 rounded-xl border border-white/10 bg-white/[0.04] p-1">
+					<div className="grid h-8 w-full grid-cols-3 rounded-xl border border-white/10 bg-white/4 p-1">
 						{([
 							{ value: "image", label: tSettings("background.image") },
 							{ value: "color", label: tSettings("background.color") },
@@ -810,7 +810,7 @@ export function SettingsPanel({
 
 	if (isBackgroundPanel) {
 		return (
-			<div className="flex-[2] min-w-[280px] max-w-[332px] bg-[#161619] border border-white/10 rounded-2xl flex flex-col shadow-xl h-full overflow-hidden">
+			<div className="flex-2 min-w-[280px] max-w-[332px] bg-[#161619] border border-white/10 rounded-2xl flex flex-col shadow-xl h-full overflow-hidden">
 				<div className="flex-1 overflow-y-auto custom-scrollbar p-4">
 					<div className="mb-4 flex items-center gap-2">
 						<Palette className="w-4 h-4 text-[#2563EB]" />
@@ -870,7 +870,7 @@ export function SettingsPanel({
 				<SliderControl label={tSettings("effects.shadow")} value={shadowIntensity} defaultValue={initialEditorPreferences.shadowIntensity} min={0} max={1} step={0.01} onChange={(v) => onShadowChange?.(v)} formatValue={(v) => `${Math.round(v * 100)}%`} parseInput={(text) => parseFloat(text.replace(/%$/, "")) / 100} />
 				<SliderControl label={tSettings("effects.radius", "Radius")} value={borderRadius} defaultValue={initialEditorPreferences.borderRadius} min={0} max={50} step={0.5} onChange={(v) => onBorderRadiusChange?.(v)} formatValue={(v) => `${v}px`} parseInput={(text) => parseFloat(text.replace(/px$/, ""))} />
 				<SliderControl label={tSettings("effects.padding")} value={padding} defaultValue={initialEditorPreferences.padding} min={0} max={100} step={1} onChange={(v) => onPaddingChange?.(v)} formatValue={(v) => `${v}%`} parseInput={(text) => parseFloat(text.replace(/%$/, ""))} />
-				<div className="flex items-center justify-between rounded-lg bg-white/[0.03] px-2.5 py-1.5">
+				<div className="flex items-center justify-between rounded-lg bg-white/3 px-2.5 py-1.5">
 					<span className="text-[10px] text-slate-400">{tSettings("effects.removeBackground")}</span>
 					<Switch checked={removeBackgroundEnabled} onCheckedChange={handleRemoveBackgroundToggle} className="data-[state=checked]:bg-[#2563EB] scale-75" />
 				</div>
@@ -972,10 +972,10 @@ export function SettingsPanel({
 							<button type="button" onClick={resetWebcamSection} className="text-[10px] text-[#2563EB] transition-opacity hover:opacity-80">{t("common.actions.reset", "Reset")}</button>
 						</div>
 						<div className="flex flex-col gap-1.5">
-							<div className="flex items-center justify-between rounded-lg bg-white/[0.03] px-2.5 py-1.5"><span className="text-[10px] text-slate-400">{tSettings("effects.show", "Show")}</span><Switch checked={webcam?.enabled ?? false} onCheckedChange={(enabled) => updateWebcam({ enabled })} className="data-[state=checked]:bg-[#2563EB] scale-75" /></div>
-							<div className="flex items-center justify-between rounded-lg bg-white/[0.03] px-2.5 py-1.5"><span className="text-[10px] text-slate-400">{tSettings("effects.webcamReactToZoom")}</span><Switch checked={webcam?.reactToZoom ?? DEFAULT_WEBCAM_REACT_TO_ZOOM} onCheckedChange={(reactToZoom) => updateWebcam({ reactToZoom })} className="data-[state=checked]:bg-[#2563EB] scale-75" /></div>
+							<div className="flex items-center justify-between rounded-lg bg-white/3 px-2.5 py-1.5"><span className="text-[10px] text-slate-400">{tSettings("effects.show", "Show")}</span><Switch checked={webcam?.enabled ?? false} onCheckedChange={(enabled) => updateWebcam({ enabled })} className="data-[state=checked]:bg-[#2563EB] scale-75" /></div>
+							<div className="flex items-center justify-between rounded-lg bg-white/3 px-2.5 py-1.5"><span className="text-[10px] text-slate-400">{tSettings("effects.webcamReactToZoom")}</span><Switch checked={webcam?.reactToZoom ?? DEFAULT_WEBCAM_REACT_TO_ZOOM} onCheckedChange={(reactToZoom) => updateWebcam({ reactToZoom })} className="data-[state=checked]:bg-[#2563EB] scale-75" /></div>
 							<SliderControl label={tSettings("effects.webcamSize")} value={webcam?.size ?? DEFAULT_WEBCAM_SIZE} defaultValue={DEFAULT_WEBCAM_SIZE} min={10} max={100} step={1} onChange={(v) => updateWebcam({ size: v })} formatValue={(v) => `${Math.round(v)}%`} parseInput={(text) => parseFloat(text.replace(/%$/, ""))} />
-							<div className="rounded-lg bg-white/[0.03] px-2.5 py-2">
+							<div className="rounded-lg bg-white/3 px-2.5 py-2">
 								<div className="mb-2 text-[10px] text-slate-400">{tSettings("effects.webcamPosition", "Position")}</div>
 								<div className="grid grid-cols-3 gap-1.5">
 									{WEBCAM_POSITION_PRESETS.map((option) => {
@@ -1011,7 +1011,7 @@ export function SettingsPanel({
 							<SliderControl label={tSettings("effects.webcamMargin", "Margin")} value={webcam?.margin ?? DEFAULT_WEBCAM_MARGIN} defaultValue={DEFAULT_WEBCAM_MARGIN} min={0} max={96} step={1} onChange={(v) => updateWebcam({ margin: v })} formatValue={(v) => `${Math.round(v)}px`} parseInput={(text) => parseFloat(text.replace(/px$/, ""))} />
 							<SliderControl label={tSettings("effects.webcamRoundness")} value={webcam?.cornerRadius ?? DEFAULT_WEBCAM_CORNER_RADIUS} defaultValue={DEFAULT_WEBCAM_CORNER_RADIUS} min={0} max={160} step={1} onChange={(v) => updateWebcam({ cornerRadius: v })} formatValue={(v) => `${Math.round(v)}px`} parseInput={(text) => parseFloat(text.replace(/px$/, ""))} />
 							<SliderControl label={tSettings("effects.webcamShadow")} value={webcam?.shadow ?? DEFAULT_WEBCAM_SHADOW} defaultValue={DEFAULT_WEBCAM_SHADOW} min={0} max={1} step={0.01} onChange={(v) => updateWebcam({ shadow: v })} formatValue={(v) => `${Math.round(v * 100)}%`} parseInput={(text) => parseFloat(text.replace(/%$/, "")) / 100} />
-							<div className="rounded-lg bg-white/[0.03] px-2.5 py-2">
+							<div className="rounded-lg bg-white/3 px-2.5 py-2">
 								<div className="flex items-center justify-between gap-2">
 									<div>
 										<div className="text-[10px] text-slate-300">{tSettings("effects.webcamFootage")}</div>
@@ -1030,7 +1030,7 @@ export function SettingsPanel({
 	})();
 
 	return (
-		<div className="flex-[2] min-w-[280px] max-w-[332px] bg-[#161619] border border-white/10 rounded-2xl flex flex-col shadow-xl h-full overflow-hidden">
+		<div className="flex-2 min-w-[280px] max-w-[332px] bg-[#161619] border border-white/10 rounded-2xl flex flex-col shadow-xl h-full overflow-hidden">
 			<div className="flex-1 min-h-0 overflow-y-auto custom-scrollbar p-4 pb-0">
 					<AnimatePresence mode="wait" initial={false}>
 						<motion.div
@@ -1045,7 +1045,7 @@ export function SettingsPanel({
 					</AnimatePresence>
 			</div>
 
-			<div className="flex-shrink-0 border-t border-white/10 bg-[#151518] p-4 pt-3">
+			<div className="shrink-0 border-t border-white/10 bg-[#151518] p-4 pt-3">
 				<div className="mb-4">
 					<div className="mb-3 flex items-center justify-between">
 						<span className="text-sm font-medium text-slate-200">{tSettings("zoom.level")}</span>
@@ -1067,7 +1067,7 @@ export function SettingsPanel({
 									disabled={!zoomEnabled}
 									onClick={() => onZoomDepthChange?.(option.depth)}
 									className={cn(
-										"h-auto w-full rounded-lg border px-1 py-2 text-center shadow-sm transition-all duration-200 ease-out",
+										"h-auto w-full rounded-lg border px-1 py-2 text-center shadow-xs transition-all duration-200 ease-out",
 										zoomEnabled ? "opacity-100 cursor-pointer" : "opacity-40 cursor-not-allowed",
 										isActive
 											? "border-[#2563EB] bg-[#2563EB] text-white"
@@ -1113,7 +1113,7 @@ export function SettingsPanel({
 									disabled={!selectedSpeedId}
 									onClick={() => onSpeedChange?.(option.speed)}
 									className={cn(
-										"h-auto w-full rounded-lg border px-1 py-2 text-center shadow-sm transition-all duration-200 ease-out",
+										"h-auto w-full rounded-lg border px-1 py-2 text-center shadow-xs transition-all duration-200 ease-out",
 										selectedSpeedId ? "opacity-100 cursor-pointer" : "opacity-40 cursor-not-allowed",
 										isActive
 											? "border-[#d97706] bg-[#d97706] text-white"

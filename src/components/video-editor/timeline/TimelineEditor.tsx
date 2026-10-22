@@ -400,7 +400,7 @@ function TimelineAxis({
 				return (
 					<div
 						key={`minor-${time}`}
-						className="absolute bottom-0 h-1 w-[1px] bg-white/5"
+						className="absolute bottom-0 h-1 w-px bg-white/5"
 						style={{ [sideProperty]: `${offset}px` }}
 					/>
 				);
@@ -422,7 +422,7 @@ function TimelineAxis({
 				return (
 					<div key={marker.time} style={markerStyle}>
 						<div className="flex flex-col items-center pb-1">
-							<div className="h-2 w-[1px] bg-white/20 mb-1" />
+							<div className="h-2 w-px bg-white/20 mb-1" />
 							<span
 								className={cn(
 									"text-[10px] font-medium tabular-nums tracking-tight",
@@ -520,7 +520,7 @@ function Timeline({
       className="select-none bg-[#17171a] h-full min-h-0 relative cursor-pointer group flex flex-col"
 			onClick={handleTimelineClick}
 		>
-			<div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px)] bg-[length:20px_100%] pointer-events-none" />
+			<div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px)] bg-size-[20px_100%] pointer-events-none" />
 			<TimelineAxis videoDurationMs={videoDurationMs} currentTimeMs={currentTimeMs} />
 			<PlaybackCursor
 				currentTimeMs={currentTimeMs}
@@ -1470,7 +1470,7 @@ export default function TimelineEditor({
                   value={customAspectWidth}
                   onChange={(event) => setCustomAspectWidth(event.target.value.replace(/\D/g, ''))}
                   onKeyDown={handleCustomAspectRatioKeyDown}
-                  className="w-12 h-7 rounded border border-white/15 bg-black/20 px-1.5 text-sm text-slate-100 focus:outline-none focus:ring-1 focus:ring-[#2563EB]"
+                  className="w-12 h-7 rounded border border-white/15 bg-black/20 px-1.5 text-sm text-slate-100 focus:outline-hidden focus:ring-1 focus:ring-[#2563EB]"
                   aria-label="Custom aspect width"
                 />
                 <span className="text-slate-500">:</span>
@@ -1480,7 +1480,7 @@ export default function TimelineEditor({
                   value={customAspectHeight}
                   onChange={(event) => setCustomAspectHeight(event.target.value.replace(/\D/g, ''))}
                   onKeyDown={handleCustomAspectRatioKeyDown}
-                  className="w-12 h-7 rounded border border-white/15 bg-black/20 px-1.5 text-sm text-slate-100 focus:outline-none focus:ring-1 focus:ring-[#2563EB]"
+                  className="w-12 h-7 rounded border border-white/15 bg-black/20 px-1.5 text-sm text-slate-100 focus:outline-hidden focus:ring-1 focus:ring-[#2563EB]"
                   aria-label="Custom aspect height"
                 />
                 <Button
@@ -1495,7 +1495,7 @@ export default function TimelineEditor({
               </div>
             </DropdownMenuContent>
           </DropdownMenu>
-          <div className="w-[1px] h-4 bg-white/10" />
+          <div className="w-px h-4 bg-white/10" />
           <Button
             variant="ghost"
             size="sm"

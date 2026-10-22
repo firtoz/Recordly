@@ -34,7 +34,7 @@ export function SliderControl({
   return (
 		<div className="relative flex h-10 w-full select-none items-center overflow-hidden rounded-xl bg-black/60 px-1.5">
 			<div
-				className="absolute inset-y-[3px] left-[3px] right-auto rounded-[10px] bg-white/[0.08] shadow-[0_4px_10px_0_rgba(0,0,0,0.18)] transition-none"
+				className="absolute inset-y-[3px] left-[3px] right-auto rounded-[10px] bg-white/8 shadow-[0_4px_10px_0_rgba(0,0,0,0.18)] transition-none"
 				style={{
 					width: pct > 0 ? `max(calc(${pct}% - 6px), 2.1rem)` : 0,
 				}}

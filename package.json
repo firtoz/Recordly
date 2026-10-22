@@ -22,7 +22,7 @@
 		"lint:fix": "biome check --write .",
 		"format": "biome format --write .",
 		"preview": "vite preview",
-		"rebuild:native": "node ./node_modules/electron-rebuild/lib/src/cli.js --force --only uiohook-napi",
+		"rebuild:native": "electron-rebuild --force --only uiohook-napi",
 		"build:native-helpers": "node scripts/build-native-helpers.mjs",
 		"build:platform-native-helpers": "npm run build:native-helpers && npm run build:windows-capture && npm run build:cursor-monitor",
 		"build:windows-capture": "node scripts/build-windows-capture.mjs",
@@ -81,25 +81,33 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.3.13",
+		"@electron/rebuild": "^4.0.0",
+		"@tailwindcss/postcss": "^4.3.3",
 		"@types/node": "^25.0.3",
 		"@types/react": "^18.2.64",
 		"@types/react-dom": "^18.2.21",
 		"@types/uuid": "^10.0.0",
 		"@vitejs/plugin-react": "^4.2.1",
-		"autoprefixer": "^10.4.21",
-		"electron": "^39.2.7",
+		"electron": "^44.9.3",
 		"electron-builder": "^26.7.0",
-		"electron-icon-builder": "^2.0.1",
-		"electron-rebuild": "^3.2.9",
 		"fast-check": "^4.5.2",
+		"playwright": "1.61.1",
 		"postcss": "^8.5.6",
-		"tailwindcss": "^3.4.18",
+		"tailwindcss": "^4.3.3",
 		"terser": "^5.44.1",
 		"typescript": "^5.2.2",
-		"vite": "^5.1.6",
+		"vite": "^6.4.5",
 		"vite-plugin-electron": "^0.28.6",
 		"vite-plugin-electron-renderer": "^0.14.5",
-		"vitest": "^4.0.16"
+		"vitest": "^4.1.12"
 	},
-	"main": "dist-electron/main.js"
+	"main": "dist-electron/main.js",
+	"engines": {
+		"node": "^22.23.4 || ^24.22.1 || >=26.12.1"
+	},
+	"overrides": {
+		"app-builder-lib": {
+			"@electron/get": "5.1.0"
+		}
+	}
 }
