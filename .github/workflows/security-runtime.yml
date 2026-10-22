@@ -19,6 +19,7 @@ jobs:
         with:
           node-version-file: .nvmrc
           package-manager-cache: false
+      - run: npm install --global npm@11.21.1
       - run: npm audit
   native:
     name: Native build (${{ matrix.os }})

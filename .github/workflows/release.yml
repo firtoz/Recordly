@@ -39,7 +39,9 @@ jobs:
           cache: npm
 
       - name: Install dependencies
-        run: npm ci
+        run: |
+          npm install --global npm@11.21.1
+          npm ci
 
       - name: Install app dependencies
         run: npx electron-builder install-app-deps
@@ -75,7 +77,9 @@ jobs:
           cache: npm
 
       - name: Install dependencies
-        run: npm ci
+        run: |
+          npm install --global npm@11.21.1
+          npm ci
 
       - name: Install app dependencies
         run: npx electron-builder install-app-deps
@@ -111,7 +115,9 @@ jobs:
           cache: npm
 
       - name: Install dependencies
-        run: npm ci
+        run: |
+          npm install --global npm@11.21.1
+          npm ci
 
       - name: Install app dependencies
         run: npx electron-builder install-app-deps
@@ -146,7 +152,9 @@ jobs:
           cache: npm
 
       - name: Install dependencies
-        run: npm ci
+        run: |
+          npm install --global npm@11.21.1
+          npm ci
 
       - name: Install app dependencies
         run: npx electron-builder install-app-deps
