@@ -103,7 +103,7 @@ jobs:
 
   build-windows-x64:
     name: Build Windows x64
-    runs-on: windows-latest
+    runs-on: windows-2022
     steps:
       - name: Checkout code
         uses: actions/checkout@v4

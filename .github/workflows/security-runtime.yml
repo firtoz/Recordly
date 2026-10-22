@@ -27,7 +27,7 @@ jobs:
       fail-fast: false
       max-parallel: 1
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
+        os: [ubuntu-latest, windows-2022, macos-latest]
     runs-on: ${{ matrix.os }}
     timeout-minutes: 30
     steps:
@@ -47,7 +47,12 @@ jobs:
       - run: npm test -- --maxWorkers=1
       - run: npm run i18n:check
       - run: npm exec vite -- build
-      - run: node scripts/runtime-smoke.mjs
+      - name: Check native runtime
+        if: runner.os != 'Linux'
+        run: node scripts/runtime-smoke.mjs
+      - name: Check native runtime under Xvfb
+        if: runner.os == 'Linux'
+        run: xvfb-run -a node scripts/runtime-smoke.mjs
       - name: Smoke real Electron interface with synthetic media
         if: runner.os == 'Linux'
         run: xvfb-run -a node scripts/electron-ui-smoke.mjs
