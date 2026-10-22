@@ -41,6 +41,7 @@ jobs:
       - name: Install Linux native build dependencies
         if: runner.os == 'Linux'
         run: sudo apt-get update && sudo apt-get install -y libx11-dev libxtst-dev libxrandr-dev libxi-dev libxinerama-dev libxcursor-dev libxkbcommon-dev libxkbfile-dev
+      - run: npm install --global npm@11.21.1
       - run: npm ci
       - run: npm exec tsc -- --noEmit
       - run: npm test -- --maxWorkers=1
